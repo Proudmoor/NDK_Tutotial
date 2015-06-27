@@ -3,7 +3,7 @@ package com.zpf.hellondk;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-import jni.getNDKStr;
+import jni.InterWithNDK;
 
 public class MainActivity extends Activity {
 
@@ -12,10 +12,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		TextView tv = new TextView(this);
 		tv.setTextSize(30);
-		tv.setText(getNDKStr.GetString());
+		tv.setText(InterWithNDK.GetNDKString());
 		setContentView(tv);
 	}
-	
 	
 	static{
 		System.loadLibrary("HelloNDK");
