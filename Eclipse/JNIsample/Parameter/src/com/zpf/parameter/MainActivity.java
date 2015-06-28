@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 	private native float   passFloat(float p);
 	private native double  passDouble(double p);
 	
-	private native String  passString(String p);
+	private native String  passStringAndReturn(String p);
 	
 	static{
 		System.loadLibrary("Parameter");
