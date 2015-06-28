@@ -1,0 +1,23 @@
+#include <jni.h>
+#include <android/log.h>
+
+JNIEXPORT jboolean JNICALL Java_com_zpf_parameter_MainActivity_passBoolean(
+		JNIEnv *pEnv, jobject pObj, jboolean pBoolean){
+	_android_log_print(ANDROID_LOG_INFO, "native", "%d in %d bytes", pBoolean, sizeof(jboolean));
+	return (!pBoolean);
+}
+
+JNIEXPORT jboolean JNICALL Java_com_zpf_parameter_MainActivity_passInt(
+		JNIEnv *pEnv, jobject pObj, jboolean pInt){
+	_android_log_print(ANDROID_LOG_INFO, "native", "%d in %d bytes", pInt, sizeof(jint));
+	return pInt + 1;
+}
+
+JNIEXPORT jboolean JNICALL Java_com_zpf_parameter_MainActivity_passDouble(
+		JNIEnv *pEnv, jobject pObj, jboolean pDouble){
+	_android_log_print(, "native", "%d in %d bytes", pDouble, sizeof(jboolean));
+	return pDouble +0.5;
+}
+
+
+

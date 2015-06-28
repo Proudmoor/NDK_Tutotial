@@ -1,0 +1,36 @@
+package com.zpf.parameter;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("boolean: ").append(passBooleanReturnBoolean(false)).append(System.getProperty("line.separator"))
+    	.append("byte: ").append(passByteReturnByte((byte)10)).append(System.getProperty("line.separator"))
+    	.append("char: ").append(passCharReturnChar('#')).append(System.getProperty("line.separator"))
+    	.append("short: ").append(passShortReturnShort((short)100)).append(System.getProperty("line.separator"))
+    	.append("int: ").append(passIntReturnInt(1000)).append(System.getProperty("line.separator"))
+    	.append("long: ").append(passLongReturnLong(4294967396L)).append(System.getProperty("line.separator"))
+    	.append("float: ").append(passFloatReturnFloat(1.11f)).append(System.getProperty("line.separator"))
+    	.append("double: ").append(passDoubleReturnDouble(11.11)).append(System.getProperty("line.separator"));
+	
+	private native boolean passBoolean(boolean p);
+	private native byte    passByte(byte p);
+	private native char    passChar(char p);
+	private native short   passShort(short p);
+	private native int     passInt(int p);
+	private native long    passLong(long p);
+	private native float   passFloat(float p);
+	private native double  passDouble(double p);
+	
+	static{
+		System.loadLibrary("Parameter");
+	}
+}

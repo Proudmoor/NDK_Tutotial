@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Parameter/jni/Parameter.cpp&apos; to &apos;Parameter.c&apos;" description="Rename resource &apos;Parameter.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="jni/Parameter.cpp" name="Parameter.c" stamp="1435471631071" updateReferences="true"/>
+</session>

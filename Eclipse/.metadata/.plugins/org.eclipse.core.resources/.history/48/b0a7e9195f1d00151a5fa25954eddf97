@@ -1,0 +1,53 @@
+#include <jni.h>
+#include <android/log.h>
+
+JNIEXPORT jboolean JNICALL Java_com_zpf_parameter_MainActivity_passBoolean(
+		JNIEnv *pEnv, jobject pObj, jboolean pBoolean){
+	_android_log_print(ANDROID_LOG_INFO, "native", "%d in %d bytes", pBoolean, sizeof(jboolean));
+	return (!pBoolean);
+}
+
+JNIEXPORT jint JNICALL Java_com_zpf_parameter_MainActivity_passInt(
+		JNIEnv *pEnv, jobject pObj, jboolean pInt){
+	_android_log_print(ANDROID_LOG_INFO, "native", "%d in %d bytes", pInt, sizeof(jint));
+	return pInt + 1;
+}
+
+JNIEXPORT jdouble JNICALL Java_com_zpf_parameter_MainActivity_passDouble(
+		JNIEnv *pEnv, jobject pObj, jboolean pDouble){
+	_android_log_print(, "native", "%d in %d bytes", pDouble, sizeof(jboolean));
+	return pDouble +0.5;
+}
+
+JNIEXPORT jlong JNICALL Java_com_zpf_parameter_MainActivity_passLong(
+		JNIEnv *pEnv, jobject pObj, jboolean pLong){
+	_android_log_print(, "native", "%llu in %d bytes", pDouble, sizeof(jlong));
+	return pLong + 1;
+}
+
+JNIEXPORT jfloat JNICALL Java_com_zpf_parameter_MainActivity_passFloat(
+		JNIEnv *pEnv, jobject pObj, jboolean pFloat){
+	_android_log_print(, "native", "%d in %d bytes", pFloat, sizeof(jfloat));
+	return pFloat +0.5;
+}
+
+JNIEXPORT jdouble JNICALL Java_com_zpf_parameter_MainActivity_passDouble(
+		JNIEnv *pEnv, jobject pObj, jboolean pDouble){
+	_android_log_print(, "native", "%d in %d bytes", pDouble, sizeof(jboolean));
+	return pDouble +0.5;
+}
+
+JNIEXPORT jdouble JNICALL Java_com_zpf_parameter_MainActivity_passDouble(
+		JNIEnv *pEnv, jobject pObj, jboolean pDouble){
+	_android_log_print(, "native", "%d in %d bytes", pDouble, sizeof(jboolean));
+	return pDouble +0.5;
+}
+
+JNIEXPORT jdouble JNICALL Java_com_zpf_parameter_MainActivity_passDouble(
+		JNIEnv *pEnv, jobject pObj, jboolean pDouble){
+	_android_log_print(, "native", "%d in %d bytes", pDouble, sizeof(jboolean));
+	return pDouble +0.5;
+}
+
+
+
