@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;MethodReg/jni/MethodReg.cpp&apos; to &apos;MethodReg.c&apos;" description="Rename resource &apos;MethodReg.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="jni/MethodReg.cpp" name="MethodReg.c" stamp="1435464838440" updateReferences="true"/>
-</session>

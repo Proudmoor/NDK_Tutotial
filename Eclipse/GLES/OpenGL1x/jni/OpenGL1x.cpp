@@ -82,6 +82,6 @@ void naDrawGraphics(JNIEnv *env, jclass clazz){
 	glLoadIdentity();
 	glTranslatef(-0.3f, 0.0f, 0.0f);
 	glScalef(0.2f, 0.2f, 0.2f);
-	glRotatef(45.0, 0.0, 0.0, 1.0);
+	glRotatef(30.0, 0.0, 0.0, 1.0);//Ðý×ª30¶È
 	mSquare.draw();
 }
