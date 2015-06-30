@@ -1,4 +1,4 @@
-obj/local/armeabi-v7a/objs/CubeGL1.x/Cube.o: jni/Cube.cpp jni/Cube.h \
+obj/local/armeabi-v7a/objs/CubeGL1x/Cube.o: jni/Cube.cpp jni/Cube.h \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/GLES/gl.h \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/GLES/glplatform.h \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/KHR/khrplatform.h \

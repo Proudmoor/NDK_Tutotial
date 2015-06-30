@@ -68,7 +68,7 @@ Cube mCube(vertices, colors, indices);
 void naInitGL1x(JNIEnv* env, jclass clazz) {
 	glDisable(GL_DITHER);	//disable dither to improve performance with reduced quality
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	//set clear value for color buffer as black
+	glClearColor(0.0f, 0.5f, 0.5f, 1.0f);	//set clear value for color buffer as black
 	glEnable(GL_CULL_FACE);		//enabled for better performance
 	glClearDepthf(1.0f);	//set clear value [0, 1] for depth buffer as farthest
 	glEnable(GL_DEPTH_TEST);	//do depth comparison and update depth buffer
@@ -78,13 +78,13 @@ void naInitGL1x(JNIEnv* env, jclass clazz) {
 	glLightModelx(GL_LIGHT_MODEL_TWO_SIDE, 0);
 	float globalAmbientLight[4] = {0.5, 0.5, 0.5, 1.0};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbientLight);
-//	GLfloat lightOneAmbientLight[4] = {0.0, 0.0, 0.0, 1.0};
+	GLfloat lightOneAmbientLight[4] = {0.0, 1.0, 0.0, 1.0};
 	GLfloat lightOneDiffuseLight[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat lightOneSpecularLight[4] = {1.0, 1.0, 1.0, 1.0};
-//	glLightfv(GL_LIGHT0, GL_AMBIENT, lightOneAmbientLight);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, lightOneAmbientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightOneDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, lightOneSpecularLight);
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 }
 

@@ -1,4 +1,4 @@
-obj/local/armeabi-v7a/objs/CubeGL1.x/CubeGL1.x.o: jni/CubeGL1.x.cpp \
+obj/local/armeabi/objs/CubeGL1x/CubeGL1x.o: jni/CubeGL1x.cpp \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/jni.h \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  D:/Android/ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \

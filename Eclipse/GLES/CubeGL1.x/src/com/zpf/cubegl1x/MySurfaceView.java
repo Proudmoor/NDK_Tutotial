@@ -1,4 +1,4 @@
-package com.zpf.cubegl1.x;
+package com.zpf.cubegl1x;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -9,7 +9,7 @@ public class MySurfaceView extends GLSurfaceView {
 	
 	private float mPreviousX;
 	private float mPreviousY;
-	private final float TOUCH_SCALE = 180.0f / 320;
+	private final float TOUCH_SCALE = 180.0f / 32000; 
 	public MySurfaceView(Context context){
 		super(context);
 		mRenderer = new MyRenderer();
@@ -25,8 +25,9 @@ public class MySurfaceView extends GLSurfaceView {
 		case MotionEvent.ACTION_MOVE:
 			float dx = x - mPreviousX;
 			float dy = y - mPreviousY;
-			mRenderer.mAngleX += dx * TOUCH_SCALE;
-			mRenderer.mAngleY += dy * TOUCH_SCALE;
+			
+			mRenderer.mAngleX += (dx<20?0:dx) * TOUCH_SCALE;
+			mRenderer.mAngleY += (dy<20?0:dy) * TOUCH_SCALE;
 			requestRender();
 		}
 		return true;

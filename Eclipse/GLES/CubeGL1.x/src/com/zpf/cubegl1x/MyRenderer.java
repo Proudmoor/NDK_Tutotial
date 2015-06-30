@@ -1,4 +1,4 @@
-package com.zpf.cubegl1.x;
+package com.zpf.cubegl1x;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -29,5 +29,9 @@ public class MyRenderer implements Renderer {
 	private static native void naInitGL1x();
 	private static native void naSurfaceChanged(int width, int height);
 	private static native void naDrawGraphics(float AngleX, float AngleY);
+	
+	static{
+		System.loadLibrary("CubeGL1x");
+	}
 	
 }

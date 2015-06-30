@@ -1,4 +1,4 @@
-package com.zpf.cubegl1.x;
+package com.zpf.cubegl1x;
 
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
