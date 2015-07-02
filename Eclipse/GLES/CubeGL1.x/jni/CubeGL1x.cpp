@@ -44,14 +44,14 @@ GLfloat vertices[24] = {
 };
 
 GLfloat colors[32] = {
-	0.0f,  1.0f,  0.0f,  1.0f,
-	0.0f,  1.0f,  0.0f,  1.0f,
-	1.0f,  0.5f,  0.0f,  1.0f,
-	1.0f,  0.5f,  0.0f,  1.0f,
-	1.0f,  0.0f,  0.0f,  1.0f,
-	1.0f,  0.0f,  0.0f,  1.0f,
-	0.0f,  0.0f,  1.0f,  1.0f,
-	1.0f,  0.0f,  1.0f,  1.0f
+	0.0f,  1.0f,  0.0f,  1.0f,//0
+	0.0f,  1.0f,  0.0f,  1.0f,//1
+	1.0f,  0.5f,  0.0f,  1.0f,//2
+	1.0f,  0.5f,  0.0f,  1.0f,//3
+	1.0f,  0.0f,  0.0f,  1.0f,//4
+	1.0f,  0.0f,  0.0f,  1.0f,//5
+	0.0f,  0.0f,  1.0f,  1.0f,//6
+	1.0f,  0.0f,  1.0f,  1.0f//7
 };
 
 GLbyte indices[36] = {
@@ -70,18 +70,18 @@ void naInitGL1x(JNIEnv* env, jclass clazz) {
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	glClearColor(0.0f, 0.5f, 0.5f, 1.0f);	//set clear value for color buffer as black
 	glEnable(GL_CULL_FACE);		//enabled for better performance
-	glClearDepthf(1.0f);	//set clear value [0, 1] for depth buffer as farthest
-	glEnable(GL_DEPTH_TEST);	//do depth comparison and update depth buffer
+	glClearDepthf(14.0f);	//set clear value [0, 1] for depth buffer as farthest
+	//glEnable(GL_DEPTH_TEST);	//do depth comparison and update depth buffer
 	glDepthFunc(GL_LEQUAL);		//type of depth test
 	glShadeModel(GL_SMOOTH);   // Enable smooth shading of color
 
 	glLightModelx(GL_LIGHT_MODEL_TWO_SIDE, 0);
 	float globalAmbientLight[4] = {0.5, 0.5, 0.5, 1.0};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbientLight);
-	GLfloat lightOneAmbientLight[4] = {0.0, 1.0, 0.0, 1.0};
-	GLfloat lightOneDiffuseLight[4] = {1.0, 1.0, 1.0, 1.0};
-	GLfloat lightOneSpecularLight[4] = {1.0, 1.0, 1.0, 1.0};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, lightOneAmbientLight);
+	//GLfloat lightOneAmbientLight[4] = {1.0, 0.0, 0.0, 1.0};
+	GLfloat lightOneDiffuseLight[4] = {0.0, 1.0, 0.0, 1.0};
+	GLfloat lightOneSpecularLight[4] = {0.0, 0.0, 1.0, 1.0};
+	//glLightfv(GL_LIGHT0, GL_AMBIENT, lightOneAmbientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightOneDiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, lightOneSpecularLight);
 	//glEnable(GL_LIGHTING);
@@ -90,27 +90,32 @@ void naInitGL1x(JNIEnv* env, jclass clazz) {
 
 void naSurfaceChanged(JNIEnv* env, jclass clazz, int width, int height) {
 	glViewport(0, 0, width, height);
-    float ratio = (float) width / height;
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrthof(-ratio, ratio, -1, 1, -10, 10);
+	    float ratio = (float) width / height;
+	    glMatrixMode(GL_PROJECTION);
+	    glLoadIdentity();
+	    glFrustumf(-ratio, ratio, -1.0, 1.0, 1.0, 10);
+	    //glOrthof(-ratio, ratio, -1.0, 1.0, -1.0, 1.0);
 }
 
 void naDrawGraphics(JNIEnv* env, jclass clazz, float pAngleX, float pAngleY) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glRotatef(pAngleX, 0, 1, 0);	//rotate around y-axis
-    glRotatef(pAngleY, 1, 0, 0);	//rotate around x-axis
-	glScalef(0.3f, 0.3f, 0.3f);      // Scale down
-    mCube.lighting();
+    glTranslatef(0.0f, 0.0f, -3.0f);
+    glRotatef(pAngleX, 1, 0, 0);	//rotate around y-axis
+    glRotatef(pAngleY, 0, 1, 0);	//rotate around x-axis
+	//glScalef(0.3f, 0.3f, 0.3f);
+	glScalef(1.0f, 1.0f, 1.0f);
+	float lightOnePosition[4] = {0.0, 0.0, 1.0, 0.0};	//final zero means light is directional, (x,y,z) indicates ray direction
+		glLightfv(GL_LIGHT0, GL_POSITION, lightOnePosition);
 	mCube.draw();
+    mCube.lighting();
+
 	//	w=0 to create a directional light (x,y,z is the light direction) like the sun
 	//	the effect of an infinite location is that the rays of light can be considered parallel by the time they reach an object.
 	//	w=1 to create a positional light like a fireball.
-	float lightOnePosition[4] = {0.0, 0.0, 1.0, 0.0};	//final zero means light is directional, (x,y,z) indicates ray direction
-	glLightfv(GL_LIGHT0, GL_POSITION, lightOnePosition);
 }
 
 

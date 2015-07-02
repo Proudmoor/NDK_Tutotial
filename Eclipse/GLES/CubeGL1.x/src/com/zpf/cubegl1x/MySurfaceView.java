@@ -2,6 +2,7 @@ package com.zpf.cubegl1x;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 public class MySurfaceView extends GLSurfaceView {
@@ -10,12 +11,12 @@ public class MySurfaceView extends GLSurfaceView {
 	private float mPreviousX;
 	private float mPreviousY;
 	private final float TOUCH_SCALE = 180.0f / 32000; 
-	public MySurfaceView(Context context){
-		super(context);
-		mRenderer = new MyRenderer();
-		this.setRenderer(mRenderer);
-		this.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-	}
+    public MySurfaceView(Context context, AttributeSet attri) {
+	        super(context,attri);
+	        mRenderer = new MyRenderer();
+			this.setRenderer(mRenderer);
+			this.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+	    }
 	
 	public boolean onTouchEvent(final MotionEvent event){
 		float x = event.getX();
