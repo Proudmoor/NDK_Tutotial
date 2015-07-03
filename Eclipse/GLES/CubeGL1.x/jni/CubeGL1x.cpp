@@ -7,8 +7,8 @@
 #include "Cube.h"
 
 void naInitGL1x(JNIEnv* env, jclass clazz);
-void naDrawGraphics(JNIEnv* env, jclass clazz, float pAngleX, float pAngleY);
-void naSurfaceChanged(JNIEnv* env, jclass clazz, int width, int height);
+void naDrawGraphics(JNIEnv* env, jclass clazz, float pAngleX, float pAngleY, float pDistance,float, float,bool Proj);
+void naSurfaceChanged(JNIEnv* env, jclass clazz, int width, int height, bool Proj);
 
 jint JNI_OnLoad(JavaVM* pVm, void* reserved)
 {
@@ -21,10 +21,10 @@ jint JNI_OnLoad(JavaVM* pVm, void* reserved)
 	nm[0].signature = "()V";
 	nm[0].fnPtr = (void*)naInitGL1x;
 	nm[1].name = "naDrawGraphics";
-	nm[1].signature = "(FF)V";
+	nm[1].signature = "(FFFFFZ)V";
 	nm[1].fnPtr = (void*)naDrawGraphics;
 	nm[2].name = "naSurfaceChanged";
-	nm[2].signature = "(II)V";
+	nm[2].signature = "(IIZ)V";
 	nm[2].fnPtr = (void*)naSurfaceChanged;
 	jclass cls = env->FindClass("com/zpf/cubegl1x/MyRenderer");
 	// Register methods with env->RegisterNatives.
@@ -88,26 +88,47 @@ void naInitGL1x(JNIEnv* env, jclass clazz) {
 	glEnable(GL_LIGHT0);
 }
 
-void naSurfaceChanged(JNIEnv* env, jclass clazz, int width, int height) {
+void naSurfaceChanged(JNIEnv* env, jclass clazz, int width, int height, bool Perspective) {
 	glViewport(0, 0, width, height);
-	    float ratio = (float) width / height;
-	    glMatrixMode(GL_PROJECTION);
-	    glLoadIdentity();
-	    glFrustumf(-ratio, ratio, -1.0, 1.0, 1.0, 10);
-	    //glOrthof(-ratio, ratio, -1.0, 1.0, -1.0, 1.0);
+	float ratio = (float) width / height;
+
+
+    glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	if(Perspective){
+		glFrustumf(-ratio, ratio, -1.0, 1.0, 1.0, 10);
+	}else{
+		glOrthof(-ratio, ratio, -1.0, 1.0, -10, 10);
+	}
 }
 
-void naDrawGraphics(JNIEnv* env, jclass clazz, float pAngleX, float pAngleY) {
+void naDrawGraphics(JNIEnv* env, jclass clazz, float pAngleX, float pAngleY,
+		float pXAxis,float pYAxis,float pZAxis, bool Perspective) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslatef(0.0f, 0.0f, -3.0f);
-    glRotatef(pAngleX, 1, 0, 0);	//rotate around y-axis
-    glRotatef(pAngleY, 0, 1, 0);	//rotate around x-axis
-	//glScalef(0.3f, 0.3f, 0.3f);
-	glScalef(1.0f, 1.0f, 1.0f);
+    	//rotate around x-axis
+	//glScalef(1.0f, 1.0f, 1.0f);
+	if(Perspective){
+		glMatrixMode(GL_MODELVIEW);
+		    glLoadIdentity();
+		    glTranslatef(pXAxis, 0.0f, 0.0f);
+		    glTranslatef(0.0f, pYAxis, 0.0f);
+		    glTranslatef(0.0f, 0.0f, pZAxis);
+		    glTranslatef(0.0f, 0.0f, -3.0f);
+		    glRotatef(pAngleX, 0, 1, 0);	//rotate around y-axis
+		    glRotatef(pAngleY, 1, 0, 0);
+	}else{
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glTranslatef(pXAxis, 0.0f, 0.0f);
+	    glTranslatef(0.0f, pYAxis, 0.0f);
+	    glTranslatef(0.0f, 0.0f, pZAxis);
+	    glTranslatef(0.0f, 0.0f, -3.0f);
+		glRotatef(pAngleX, 0, 1, 0);	//rotate around y-axis
+		glRotatef(pAngleY, 1, 0, 0);
+		glScalef(0.4f, 0.4f,0.4f);
+	}
 	float lightOnePosition[4] = {0.0, 0.0, 1.0, 0.0};	//final zero means light is directional, (x,y,z) indicates ray direction
 		glLightfv(GL_LIGHT0, GL_POSITION, lightOnePosition);
 	mCube.draw();

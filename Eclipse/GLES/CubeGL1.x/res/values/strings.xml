@@ -3,5 +3,12 @@
 
     <string name="app_name">CubeGL1.x</string>
     <string name="hello_world">Hello world!</string>
+    <string name="reset_button">Rest</string>
+    <string name="flip_button">FLIP</string>
+    <string name="Perspective">透视投影</string>
+    <string name="Orthographic">正投影</string>
+    <string name="DistanceZ">Z-Axis:</string>
+    <string name="DistanceX">X-Axis:</string>
+    <string name="DistanceY">Y-Axis:</string>
 
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="DistanceZ">10</integer>
+    <integer name="ProgressZ">30</integer>
+    <integer name="ProgressY">50</integer>
+    <integer name="ProgressX">50</integer>
+</resources>
